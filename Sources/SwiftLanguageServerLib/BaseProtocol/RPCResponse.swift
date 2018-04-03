@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RPCResponse<Result: Codable>: Codable {
+public struct RPCResponse<Result: Codable, ErrorData: Codable>: Codable {
 
     /// The rpc id
     public let id: Int
@@ -19,14 +19,20 @@ public struct RPCResponse<Result: Codable>: Codable {
     public let result: Result?
 
     /// The error
-    public let error: Error?
+    public let error: Error<ErrorData>?
 
-    public struct Error: Codable {
+    public struct Error<ErrorData: Codable>: Codable {
 
         /// The error code
         let code: Int
 
         /// The error message
         let message: String
+
+        /**
+         * A Primitive or Structured value that contains additional
+         * information about the error. Can be omitted.
+         */
+        let data: ErrorData?
     }
 }

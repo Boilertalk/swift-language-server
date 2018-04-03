@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RPCError: Int, Error {
+public enum RPCError: Int, Error, Codable {
 
     // Defined by JSON RPC
     case parseError = -32700
