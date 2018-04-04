@@ -24,3 +24,10 @@ public struct TextDocumentItem: Codable {
     /// The content of the opened text document.
     public let text: String
 }
+
+public extension TextDocumentItem {
+
+    public func update(version: Int, text: String) -> TextDocumentItem {
+        return TextDocumentItem(uri: uri, languageId: languageId, version: version, text: text)
+    }
+}
